@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:wght@100..900&display=swap');
+/* Import Montserrat and Inter fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* apply global styling */
+/* Global styles */
 * {
   margin: 0;
   padding: 0;
@@ -12,8 +13,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 100vh;
-  background: linear-gradient(#c2f0fc, #a7dbea);
+  min-height: 100vh;
+  background: linear-gradient(#C2F0FC, #A0D7E7);
 }
 
 #root {
@@ -22,15 +23,27 @@ body {
 
 .container {
   max-width: 410px;
-  background: linear-gradient(#081826, #0f3057);
+  background: linear-gradient(#184A73, #0F3057);
   margin: 0 auto;
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
   overflow: hidden;
-
-
+  z-index: 1;
 }
 
+.container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url("bg.png");
+  z-index: -1;
+}
+
+/* Search Section Styles */
 .search-section {
   display: flex;
   align-items: center;
@@ -42,54 +55,52 @@ body {
   height: 54px;
   width: 100%;
   position: relative;
-
 }
 
 .search-section .search-form span {
   color: white;
-  top: 30%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translateY(-50%);
   position: absolute;
-  left: 20px;
-
-
+  left: 16px;
 }
 
 .search-section .search-input {
   width: 100%;
   height: 100%;
-  border: 1px solid rgb(255, 255, 255, 0.25);
-  background-color: rgb(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
   outline: none;
   padding: 0 20px 0 50px;
   border-radius: 6px;
   color: white;
   font-size: 1rem;
   text-transform: uppercase;
+  transition: 0.1s ease;
 }
 
 .search-section .search-input:focus {
-  border-color: #76c7c0;
+  border-color: #76C7C0;
 }
 
 .search-section .search-input::placeholder {
-  color: #b8e0e3;
+  color: #B8E0E3;
   text-transform: none;
 }
 
 .search-section .location-button {
   height: 54px;
   width: 56px;
-  border: 1px solid rgb(255, 255, 255, 0.1);
-  background: rgb(255, 255, 255, 0.3);
-  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.3);
+  color: #E3FDFD;
   cursor: pointer;
   border-radius: 6px;
   flex-shrink: 0;
+  transition: 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .search-section .location-button span {
@@ -97,67 +108,62 @@ body {
 }
 
 .search-section .location-button:hover {
-  color: #76c7c0;
-  border-color: #5da7a2;
+  color: #76C7C0;
+  border-color: #5DA7A2;
 }
 
+/* Weather Section Styles */
 .weather-section :where(h2, p) {
-  color: #e3fdfd;
+  color: #E3FDFD;
 }
 
 .weather-section .current-weather {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 20px 0 50px;
-  flex-direction: column;
 }
 
-/* current weather icon */
 .current-weather .weather-icon {
   width: 140px;
   aspect-ratio: 1;
-
 }
 
 .current-weather .temperature {
   margin: 18px 0;
   font-size: 3.38rem;
-
+  display: flex;
 }
 
-.current-weather .temperature span {
+.current-weather .temperature .span {
   font-size: 1.56rem;
   font-weight: 400;
   margin: 5px 0 0 2px;
-
 }
 
 .current-weather .description {
   font-size: 1.25rem;
 }
 
+/* Hourly Forecast Styles */
+.hourly-forecast {
+  padding: 16px 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 .hourly-forecast .weather-list {
   display: flex;
   gap: 32px;
-  overflow: auto;
+  overflow-x: auto;
   list-style: none;
   scrollbar-width: thin;
   padding-bottom: 16px;
   margin-bottom: -16px;
   scrollbar-color: transparent transparent;
-
 }
-
-.hourly-forecast {
-  padding: 16px 25px;
-  border-top: 1px solid rgb(red, green, blue);
-}
-
-
 
 .hourly-forecast:hover .weather-list {
-  scrollbar-color: #76c7c0 transparent;
+  scrollbar-color: #76C7C0 transparent;
 }
 
 .hourly-forecast .weather-item {
@@ -165,10 +171,28 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 7px;
-
 }
 
 .hourly-forecast .weather-item .weather-icon {
   width: 28px;
   aspect-ratio: 1;
+}
+
+/* No Results Styles */
+.no-results {
+  min-height: 460px;
+  display: flex;
+  color: #E3FDFD;
+  padding: 60px 40px 40px;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.no-results .title {
+  margin: 25px 0 15px;
+}
+
+.no-results .message {
+  line-height: 23px;
 }

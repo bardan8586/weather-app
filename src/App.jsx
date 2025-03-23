@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SearchSection from "./components/SearchSection";
 import CurrentWeather from "./components/CurrentWeather";
-import HourlyWeatherItems from "./components/HourlyWeatherItems";
+import HourlyWeatherItem from "./components/HourlyWeatherItem";
 import { weatherCodes } from "./constants";
 
 function App() {
@@ -76,7 +76,7 @@ console.log(hourlyforecast, "hourlyForecast");
           <ul className="weather-list">
             {hourlyforecast.map((hourlyWeather) => (
 
-            <HourlyWeatherItems 
+            <HourlyWeatherItem 
             key={hourlyWeather.time_epoch}
             hourlyWeather={hourlyWeather}
              />
